@@ -20,11 +20,21 @@ import TypeDisplay from "@/pages/pokemonLookup/TypeDisplay.tsx";
 import type {Pokemon} from "@/interfaces/interfaces.ts";
 import SpriteCardsDisplay from "@/pages/pokemonLookup/SpriteCardsDisplay.tsx";
 import Dropdown from "@/components/Dropdown.tsx";
+import {useTranslation} from "react-i18next";
 
 const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
     const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined)
     const [pokedexEntry, setPokedexEntry] = useState<string | undefined>(undefined)
+
+    const { t, i18n } = useTranslation();
+
+    const lngs = {
+        en: {nativeName: "English"},
+        de: {nativeName: "Deutsch"},
+        fr: {nativeName: "français"},
+        jp: {nativeName: "日本語"}
+    }
 
     const changeNameOrNumber = (newNameOrNumber: string) => {
         setNameOrNumber(newNameOrNumber);
@@ -54,18 +64,31 @@ const PokemonLookupView = () => {
 
     return (
         <>
-            <Container maxW="md">
+            <Flex gap={4} justify="center">
+                {Object.entries(lngs).map(([lng, details]) => (
+                    <Button
+                        type="submit"
+                        colorPalette="gray"
+                        variant="surface"
+                        key={lng}
+                        onClick={() => i18n.changeLanguage(lng)}
+                        disabled={i18n.resolvedLanguage == lng}>
+                        {details.nativeName}
+                    </Button>
+                ))}
+            </Flex>
+            <Container maxW="md" mt="8">
                 <Flex gap={2}>
                     <Input
-                        placeholder="Type the name or the pokedex number."
+                        placeholder={t("input.search_pokemon")}
                         onBlur={(e) => changeNameOrNumber(e.target.value)}
                     />
-                    <Button onClick={() => searchPokemon()} colorPalette="green">Search</Button>
+                    <Button onClick={() => searchPokemon()} colorPalette="green">{t("button.search")}</Button>
                     <Button onClick={searchRandomPokemon} colorPalette="blue">?</Button>
                 </Flex>
             </Container>
             {pokemon && (
-                <Flex direction="column" align="center" gap={4} mt={8}>
+                <Flex direction="column" align="center" gap={4} mt={4}>
                     <Heading size="4xl" css={{marginTop: "8"}}>{pokemon.name.toUpperCase()}</Heading>
                     <div>
                         <Flex gap={4}>
@@ -78,14 +101,14 @@ const PokemonLookupView = () => {
                                 <TypeDisplay types={pokemon.types} />
                                 <BlockquoteRoot css={{marginTop: "12"}}>
                                     <BlockquoteContent>{pokedexEntry}</BlockquoteContent>
-                                    <BlockquoteCaption><cite>-Pokedex</cite></BlockquoteCaption>
+                                    <BlockquoteCaption><cite>-{t("common.pokedex")}</cite></BlockquoteCaption>
                                 </BlockquoteRoot>
                             </GridItem>
                             <GridItem>
                                 <Stack gap={4}>
-                                    <Dropdown title="stats"/>
-                                    <Dropdown title="moves"/>
-                                    <Dropdown title="evolves to"/>
+                                    <Dropdown title={t("dropdown.stats")}/>
+                                    <Dropdown title={t("dropdown.moves")}/>
+                                    <Dropdown title={t("dropdown.evolution")}/>
                                 </Stack>
                             </GridItem>
                         </Grid>
