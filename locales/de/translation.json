@@ -36,5 +36,8 @@
     "stats": "Statuswerte",
     "moves": "Attacken",
     "evolution": "Entwicklung"
+  },
+  "error": {
+    "no_pokedex_entry": "Es gibt keinen Pokédex-Eintrag für die ausgewählte Sprache."
   }
 }

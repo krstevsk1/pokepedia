@@ -36,5 +36,8 @@
     "stats": "Stats",
     "moves": "Moves",
     "evolution": "Evolution"
+  },
+  "error": {
+    "no_pokedex_entry": "There is no Pokédex entry for your selected language."
   }
 }
