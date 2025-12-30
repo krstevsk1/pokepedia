@@ -28,3 +28,13 @@ export interface Pokemon {
     pokemon?: Pokemon
 }
 
+export interface PokedexEntry {
+    flavor_text_entries: Array<{
+        flavor_text: string;
+        language: {
+            name: string;
+            url: string;
+        };
+    }>
+}
+

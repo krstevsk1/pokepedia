@@ -17,7 +17,7 @@ import {
     getPokemonByNameOrNumber
 } from "@/pages/pokemonLookup/services/pokemonLookupService.tsx";
 import TypeDisplay from "@/pages/pokemonLookup/TypeDisplay.tsx";
-import type {Pokemon} from "@/interfaces/interfaces.ts";
+import type {PokedexEntry, Pokemon} from "@/interfaces/interfaces.ts";
 import SpriteCardsDisplay from "@/pages/pokemonLookup/SpriteCardsDisplay.tsx";
 import Dropdown from "@/components/Dropdown.tsx";
 import {useTranslation} from "react-i18next";
@@ -25,15 +25,16 @@ import {useTranslation} from "react-i18next";
 const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
     const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined)
-    const [pokedexEntry, setPokedexEntry] = useState<string | undefined>(undefined)
+    const [pokedexEntry, setPokedexEntry] = useState<PokedexEntry | undefined>(undefined)
 
     const { t, i18n } = useTranslation();
+    const language = i18n.language;
 
     const lngs = {
         en: {nativeName: "English"},
         de: {nativeName: "Deutsch"},
         fr: {nativeName: "français"},
-        jp: {nativeName: "日本語"}
+        ja: {nativeName: "にほんご"}
     }
 
     const changeNameOrNumber = (newNameOrNumber: string) => {
@@ -42,25 +43,32 @@ const PokemonLookupView = () => {
 
     const searchPokemon = async (searchValue?: string) => {
         const valueToSearch = searchValue || nameOrNumber;
-        await getPokemonByNameOrNumber(valueToSearch).then(pokemon => {
-            setPokemon(pokemon);
-            getPokedexEntry(pokemon.id.toString()).then(entry => setPokedexEntry(entry.flavor_text_entries[0].flavor_text));
-        });
+
+        const [pokemonData, pokedexData] = await Promise.all([
+            getPokemonByNameOrNumber(valueToSearch),
+            getPokedexByNameOrNumber(valueToSearch)
+        ]);
+
+        setPokemon(pokemonData);
+        setPokedexEntry(pokedexData);
     }
 
     const searchRandomPokemon = async () => {
         const numOfPokemon = 1025;
-
         const randomNumber = Math.floor(Math.random() * (numOfPokemon - 1) + 1).toString();
-        await getPokemonByNameOrNumber(randomNumber).then(pokemon => {
-            setPokemon(pokemon);
-            getPokedexEntry(pokemon.id.toString());
-        });
+
+        const [pokemonData, pokedexData] = await Promise.all([
+            getPokemonByNameOrNumber(randomNumber),
+            getPokedexByNameOrNumber(randomNumber)
+        ]);
+
+        setPokemon(pokemonData);
+        setPokedexEntry(pokedexData);
     }
 
-    const getPokedexEntry = async (searchValue?: string) => {
-        return await getPokedexByNameOrNumber(searchValue ?? nameOrNumber);
-    }
+    const currentPokedexEntry = pokedexEntry?.flavor_text_entries.find(
+        entry => entry.language.name === language
+    )?.flavor_text ?? t("error.no_pokedex_entry");
 
     return (
         <>
@@ -100,7 +108,7 @@ const PokemonLookupView = () => {
                             <GridItem>
                                 <TypeDisplay types={pokemon.types} />
                                 <BlockquoteRoot css={{marginTop: "12"}}>
-                                    <BlockquoteContent>{pokedexEntry}</BlockquoteContent>
+                                    <BlockquoteContent>{currentPokedexEntry}</BlockquoteContent>
                                     <BlockquoteCaption><cite>-{t("common.pokedex")}</cite></BlockquoteCaption>
                                 </BlockquoteRoot>
                             </GridItem>

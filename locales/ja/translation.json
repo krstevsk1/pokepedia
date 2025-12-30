@@ -1,7 +1,7 @@
 {
   "pokemon": {
-    "front_sprite": "正面スプライト",
-    "back_sprite": "背面スプライト",
+    "front_sprite": "しょうめんスプライト",
+    "back_sprite": "はいめんスプライト",
     "type": {
       "normal": "ノーマル",
       "fire": "ほのお",
@@ -24,17 +24,20 @@
     }
   },
   "input": {
-    "search_pokemon": "名前または図鑑番号。"
+    "search_pokemon": "なまえまたはずかんばんごう。"
   },
   "common": {
-    "pokedex": "ポケモン図鑑"
+    "pokedex": "ポケモンずかん"
   },
   "button": {
-    "search": "検索"
+    "search": "けんさく"
   },
   "dropdown": {
     "stats": "ステータス",
     "moves": "わざ",
-    "evolution": "進化"
+    "evolution": "しんか"
+  },
+  "error": {
+    "no_pokedex_entry": "せんたくしたげんごのずかんエントリがありません。"
   }
 }
