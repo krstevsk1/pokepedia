@@ -11,7 +11,7 @@ const TypeDisplay = ({ types }: { types?: PokemonTypeSlot[] }) => {
         return (
             <div style={{display: "flex", alignContent: "flex-start"}}>
                 {types?.map(type => (
-                    <div style={{display: "flex", alignItems: "center", gap: "8px", width: "120px"}}>
+                    <div style={{display: "flex", alignItems: "center", gap: "8px", width: "160px"}}>
                     <Image width="48px"
                         key={type.type.name}
                         src={`src/assets/images/types/${type.type.name}.png`}

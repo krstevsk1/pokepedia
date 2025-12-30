@@ -27,7 +27,14 @@ const PokemonLookupView = () => {
     const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined)
     const [pokedexEntry, setPokedexEntry] = useState<string | undefined>(undefined)
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+
+    const lngs = {
+        en: {nativeName: "English"},
+        de: {nativeName: "Deutsch"},
+        fr: {nativeName: "français"},
+        jp: {nativeName: "日本語"}
+    }
 
     const changeNameOrNumber = (newNameOrNumber: string) => {
         setNameOrNumber(newNameOrNumber);
@@ -57,7 +64,20 @@ const PokemonLookupView = () => {
 
     return (
         <>
-            <Container maxW="md">
+            <Flex gap={4} justify="center">
+                {Object.entries(lngs).map(([lng, details]) => (
+                    <Button
+                        type="submit"
+                        colorPalette="gray"
+                        variant="surface"
+                        key={lng}
+                        onClick={() => i18n.changeLanguage(lng)}
+                        disabled={i18n.resolvedLanguage == lng}>
+                        {details.nativeName}
+                    </Button>
+                ))}
+            </Flex>
+            <Container maxW="md" mt="8">
                 <Flex gap={2}>
                     <Input
                         placeholder={t("input.search_pokemon")}
@@ -68,7 +88,7 @@ const PokemonLookupView = () => {
                 </Flex>
             </Container>
             {pokemon && (
-                <Flex direction="column" align="center" gap={4} mt={8}>
+                <Flex direction="column" align="center" gap={4} mt={4}>
                     <Heading size="4xl" css={{marginTop: "8"}}>{pokemon.name.toUpperCase()}</Heading>
                     <div>
                         <Flex gap={4}>

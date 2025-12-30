@@ -1,0 +1,40 @@
+{
+  "pokemon": {
+    "front_sprite": "Sprite de face",
+    "back_sprite": "Sprite de dos",
+    "type": {
+      "normal": "Normal",
+      "fire": "Feu",
+      "water": "Eau",
+      "electric": "Électrik",
+      "grass": "Plante",
+      "ice": "Glace",
+      "fighting": "Combat",
+      "poison": "Poison",
+      "ground": "Sol",
+      "flying": "Vol",
+      "psychic": "Psy",
+      "bug": "Insecte",
+      "rock": "Roche",
+      "ghost": "Spectre",
+      "dragon": "Dragon",
+      "dark": "Ténèbres",
+      "steel": "Acier",
+      "fairy": "Fée"
+    }
+  },
+  "input": {
+    "search_pokemon": "Nom ou numéro du Pokédex."
+  },
+  "common": {
+    "pokedex": "Pokédex"
+  },
+  "button": {
+    "search": "Rechercher"
+  },
+  "dropdown": {
+    "stats": "Statistiques",
+    "moves": "Capacités",
+    "evolution": "Évolution"
+  }
+}

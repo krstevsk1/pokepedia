@@ -1,0 +1,40 @@
+{
+  "pokemon": {
+    "front_sprite": "正面スプライト",
+    "back_sprite": "背面スプライト",
+    "type": {
+      "normal": "ノーマル",
+      "fire": "ほのお",
+      "water": "みず",
+      "electric": "でんき",
+      "grass": "くさ",
+      "ice": "こおり",
+      "fighting": "かくとう",
+      "poison": "どく",
+      "ground": "じめん",
+      "flying": "ひこう",
+      "psychic": "エスパー",
+      "bug": "むし",
+      "rock": "いわ",
+      "ghost": "ゴースト",
+      "dragon": "ドラゴン",
+      "dark": "あく",
+      "steel": "はがね",
+      "fairy": "フェアリー"
+    }
+  },
+  "input": {
+    "search_pokemon": "名前または図鑑番号。"
+  },
+  "common": {
+    "pokedex": "ポケモン図鑑"
+  },
+  "button": {
+    "search": "検索"
+  },
+  "dropdown": {
+    "stats": "ステータス",
+    "moves": "わざ",
+    "evolution": "進化"
+  }
+}
