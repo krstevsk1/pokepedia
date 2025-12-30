@@ -1,12 +1,15 @@
 import type {Pokemon} from "@/interfaces/interfaces.ts";
 import {FcNext, FcPrevious} from "react-icons/fc";
 import {Button, CardBody, CardHeader, CardRoot, Heading, Image} from "@chakra-ui/react";
+import {useTranslation} from "react-i18next";
 
 const SpriteCardsDisplay = (
     { pokemon, searchPokemon }: {
         pokemon: Pokemon,
         searchPokemon: (number: string, changeOrder: boolean) => void
     }) => {
+
+    const { t } = useTranslation();
 
     const handlePokemonChange = (order: string) => {
 
@@ -29,7 +32,7 @@ const SpriteCardsDisplay = (
             </Button>)}
             <CardRoot width="240px">
                 <CardHeader>
-                    <Heading>Front Sprite</Heading>
+                    <Heading>{t("pokemon.front_sprite")}</Heading>
                 </CardHeader>
                 <CardBody>
                     <Image height="200px" src={pokemon.sprites.front_default?.valueOf()}/>
@@ -37,7 +40,7 @@ const SpriteCardsDisplay = (
             </CardRoot>
             {pokemon.sprites.back_default && (<CardRoot width="240px">
                 <CardHeader>
-                    <Heading>Back Sprite</Heading>
+                    <Heading>{t("pokemon.back_sprite")}</Heading>
                 </CardHeader>
                 <CardBody>
                     <Image height="200px" src={pokemon.sprites.back_default?.valueOf()}/>

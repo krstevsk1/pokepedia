@@ -1,7 +1,10 @@
 import {Image} from "@chakra-ui/react";
 import type {PokemonTypeSlot} from "@/interfaces/interfaces.ts";
+import {useTranslation} from "react-i18next";
 
 const TypeDisplay = ({ types }: { types?: PokemonTypeSlot[] }) => {
+
+    const { t } = useTranslation();
 
     const getPokemonTypeLocations = () => {
 
@@ -14,7 +17,7 @@ const TypeDisplay = ({ types }: { types?: PokemonTypeSlot[] }) => {
                         src={`src/assets/images/types/${type.type.name}.png`}
                         alt={type.type.name}
                     />
-                        <b style={{color: getFontColorForType(type.type.name)}}>{type.type.name}</b>
+                        <b style={{color: getFontColorForType(type.type.name)}}>{t(`pokemon.type.${type.type.name}`)}</b>
                     </div>
                 ))}
             </div>

@@ -20,11 +20,14 @@ import TypeDisplay from "@/pages/pokemonLookup/TypeDisplay.tsx";
 import type {Pokemon} from "@/interfaces/interfaces.ts";
 import SpriteCardsDisplay from "@/pages/pokemonLookup/SpriteCardsDisplay.tsx";
 import Dropdown from "@/components/Dropdown.tsx";
+import {useTranslation} from "react-i18next";
 
 const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
     const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined)
     const [pokedexEntry, setPokedexEntry] = useState<string | undefined>(undefined)
+
+    const { t } = useTranslation();
 
     const changeNameOrNumber = (newNameOrNumber: string) => {
         setNameOrNumber(newNameOrNumber);
@@ -57,10 +60,10 @@ const PokemonLookupView = () => {
             <Container maxW="md">
                 <Flex gap={2}>
                     <Input
-                        placeholder="Type the name or the pokedex number."
+                        placeholder={t("input.search_pokemon")}
                         onBlur={(e) => changeNameOrNumber(e.target.value)}
                     />
-                    <Button onClick={() => searchPokemon()} colorPalette="green">Search</Button>
+                    <Button onClick={() => searchPokemon()} colorPalette="green">{t("button.search")}</Button>
                     <Button onClick={searchRandomPokemon} colorPalette="blue">?</Button>
                 </Flex>
             </Container>
@@ -78,14 +81,14 @@ const PokemonLookupView = () => {
                                 <TypeDisplay types={pokemon.types} />
                                 <BlockquoteRoot css={{marginTop: "12"}}>
                                     <BlockquoteContent>{pokedexEntry}</BlockquoteContent>
-                                    <BlockquoteCaption><cite>-Pokedex</cite></BlockquoteCaption>
+                                    <BlockquoteCaption><cite>-{t("common.pokedex")}</cite></BlockquoteCaption>
                                 </BlockquoteRoot>
                             </GridItem>
                             <GridItem>
                                 <Stack gap={4}>
-                                    <Dropdown title="stats"/>
-                                    <Dropdown title="moves"/>
-                                    <Dropdown title="evolves to"/>
+                                    <Dropdown title={t("dropdown.stats")}/>
+                                    <Dropdown title={t("dropdown.moves")}/>
+                                    <Dropdown title={t("dropdown.evolution")}/>
                                 </Stack>
                             </GridItem>
                         </Grid>
