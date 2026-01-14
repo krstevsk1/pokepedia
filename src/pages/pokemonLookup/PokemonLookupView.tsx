@@ -21,6 +21,7 @@ import type {PokedexEntry, Pokemon} from "@/interfaces/interfaces.ts";
 import SpriteCardsDisplay from "@/pages/pokemonLookup/SpriteCardsDisplay.tsx";
 import Dropdown from "@/components/Dropdown.tsx";
 import {useTranslation} from "react-i18next";
+import PokemonStats from "@/pages/pokemonLookup/PokemonStats.tsx";
 
 const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
@@ -114,7 +115,9 @@ const PokemonLookupView = () => {
                             </GridItem>
                             <GridItem>
                                 <Stack gap={4}>
-                                    <Dropdown title={t("dropdown.stats")}/>
+                                    <Dropdown title={t("dropdown.stats")}>
+                                        <PokemonStats stats={pokemon.stats}/>
+                                    </Dropdown>
                                     <Dropdown title={t("dropdown.moves")}/>
                                     <Dropdown title={t("dropdown.evolution")}/>
                                 </Stack>

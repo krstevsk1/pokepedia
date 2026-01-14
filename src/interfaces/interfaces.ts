@@ -1,9 +1,20 @@
+import {Stat} from "@chakra-ui/react";
+
 export interface PokemonTypeSlot {
     slot: number;
     type: {
         name: string;
         url: string;
     };
+}
+
+export interface Stat {
+    base_stat: number,
+    effort: number,
+    stat: {
+        name: string;
+    },
+    stats?: Array<Stat> | undefined
 }
 
 export interface Pokemon {
@@ -17,15 +28,7 @@ export interface Pokemon {
     height?: number,
     weight?: number,
     types?: PokemonTypeSlot[],
-    stats?: Array<{
-        base_stat: number;
-        effort: number;
-        stat: {
-            name: string;
-            url: string;
-        };
-    }>,
-    pokemon?: Pokemon
+    stats?: Array<Stat>,
 }
 
 export interface PokedexEntry {
