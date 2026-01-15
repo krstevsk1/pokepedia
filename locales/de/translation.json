@@ -30,7 +30,8 @@
     "pokedex": "Pokédex"
   },
   "button": {
-    "search": "Suchen"
+    "search": "Suchen",
+    "back": "Zurück"
   },
   "dropdown": {
     "stats": "Statuswerte",
@@ -52,6 +53,10 @@
   "moves": {
     "name": "Name",
     "lvl": "Lvl.",
-    "learned_at": "Erlernt bei"
-  }
+    "learned_at": "Erlernt bei",
+    "power": "Stärke",
+    "pp": "AP",
+    "accuracy": "Genauigkeit"
+  },
+  "loading": "Lädt..."
 }

@@ -15,7 +15,7 @@ import {useState} from "react";
 import {
     getPokedexByNameOrNumber,
     getPokemonByNameOrNumber
-} from "@/pages/pokemonLookup/services/pokemonLookupService.tsx";
+} from "@/pages/pokemonLookup/services/pokemonLookupService.ts";
 import TypeDisplay from "@/pages/pokemonLookup/TypeDisplay.tsx";
 import type {PokedexEntry, Pokemon} from "@/interfaces/interfaces.ts";
 import SpriteCardsDisplay from "@/pages/pokemonLookup/SpriteCardsDisplay.tsx";

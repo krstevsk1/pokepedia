@@ -30,7 +30,8 @@
     "pokedex": "Pokédex"
   },
   "button": {
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "back": "Retour"
   },
   "dropdown": {
     "stats": "Statistiques",
@@ -52,6 +53,10 @@
   "moves": {
     "name": "Nom",
     "lvl": "Niv.",
-    "learned_at": "Appris au"
-  }
+    "learned_at": "Appris au",
+    "power": "Puissance",
+    "pp": "PP",
+    "accuracy": "Précision"
+  },
+  "loading": "Chargement..."
 }
