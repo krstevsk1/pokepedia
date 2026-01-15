@@ -30,7 +30,8 @@
     "pokedex": "Pokédex"
   },
   "button": {
-    "search": "Search"
+    "search": "Search",
+    "back": "Back"
   },
   "dropdown": {
     "stats": "Stats",
@@ -48,5 +49,14 @@
     "special-defense": "Sp. Defense",
     "speed": "Speed",
     "total": "Total"
-  }
+  },
+  "moves": {
+    "name": "Name",
+    "lvl": "Lvl.",
+    "learned_at": "Learned At",
+    "power": "Power",
+    "pp": "PP",
+    "accuracy": "Accuracy"
+  },
+  "loading": "Loading..."
 }

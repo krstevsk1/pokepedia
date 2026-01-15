@@ -30,7 +30,8 @@
     "pokedex": "Pokédex"
   },
   "button": {
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "back": "Retour"
   },
   "dropdown": {
     "stats": "Statistiques",
@@ -48,5 +49,14 @@
     "special-defense": "Déf. Spé.",
     "speed": "Vitesse",
     "total": "Total"
-  }
+  },
+  "moves": {
+    "name": "Nom",
+    "lvl": "Niv.",
+    "learned_at": "Appris au",
+    "power": "Puissance",
+    "pp": "PP",
+    "accuracy": "Précision"
+  },
+  "loading": "Chargement..."
 }

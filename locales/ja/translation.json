@@ -30,7 +30,8 @@
     "pokedex": "ポケモンずかん"
   },
   "button": {
-    "search": "けんさく"
+    "search": "けんさく",
+    "back": "戻る"
   },
   "dropdown": {
     "stats": "ステータス",
@@ -48,5 +49,14 @@
     "special-defense": "とくぼう",
     "speed": "すばやさ",
     "total": "合計"
-  }
+  },
+  "moves": {
+    "name": "名前",
+    "lvl": "Lv.",
+    "learned_at": "習得レベル",
+    "power": "威力",
+    "pp": "PP",
+    "accuracy": "命中率"
+  },
+  "loading": "読み込み中..."
 }

@@ -30,7 +30,8 @@
     "pokedex": "Pokédex"
   },
   "button": {
-    "search": "Suchen"
+    "search": "Suchen",
+    "back": "Zurück"
   },
   "dropdown": {
     "stats": "Statuswerte",
@@ -48,5 +49,14 @@
     "special-defense": "Sp. Verteidigung",
     "speed": "Initiative",
     "total": "Gesamt"
-  }
+  },
+  "moves": {
+    "name": "Name",
+    "lvl": "Lvl.",
+    "learned_at": "Erlernt bei",
+    "power": "Stärke",
+    "pp": "AP",
+    "accuracy": "Genauigkeit"
+  },
+  "loading": "Lädt..."
 }

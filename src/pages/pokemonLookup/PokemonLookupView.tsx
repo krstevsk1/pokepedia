@@ -15,13 +15,14 @@ import {useState} from "react";
 import {
     getPokedexByNameOrNumber,
     getPokemonByNameOrNumber
-} from "@/pages/pokemonLookup/services/pokemonLookupService.tsx";
+} from "@/pages/pokemonLookup/services/pokemonLookupService.ts";
 import TypeDisplay from "@/pages/pokemonLookup/TypeDisplay.tsx";
 import type {PokedexEntry, Pokemon} from "@/interfaces/interfaces.ts";
 import SpriteCardsDisplay from "@/pages/pokemonLookup/SpriteCardsDisplay.tsx";
 import Dropdown from "@/components/Dropdown.tsx";
 import {useTranslation} from "react-i18next";
 import PokemonStats from "@/pages/pokemonLookup/PokemonStats.tsx";
+import {MovesTable} from "@/pages/pokemonLookup/MovesTable.tsx";
 
 const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
@@ -118,7 +119,9 @@ const PokemonLookupView = () => {
                                     <Dropdown title={t("dropdown.stats")}>
                                         <PokemonStats stats={pokemon.stats}/>
                                     </Dropdown>
-                                    <Dropdown title={t("dropdown.moves")}/>
+                                    <Dropdown title={t("dropdown.moves")}>
+                                        <MovesTable moves={pokemon.moves}/>
+                                    </Dropdown>
                                     <Dropdown title={t("dropdown.evolution")}/>
                                 </Stack>
                             </GridItem>
