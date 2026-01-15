@@ -39,5 +39,14 @@
   },
   "error": {
     "no_pokedex_entry": "Il n'y a pas d'entrée Pokédex pour la langue sélectionnée."
+  },
+  "stats": {
+    "hp": "PV",
+    "attack": "Attaque",
+    "defense": "Défense",
+    "special-attack": "Atq. Spé.",
+    "special-defense": "Déf. Spé.",
+    "speed": "Vitesse",
+    "total": "Total"
   }
 }

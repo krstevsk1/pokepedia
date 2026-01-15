@@ -6,6 +6,15 @@ export interface PokemonTypeSlot {
     };
 }
 
+export interface Stat {
+    base_stat: number,
+    effort: number,
+    stat: {
+        name: string;
+    },
+    stats?: Array<Stat> | undefined
+}
+
 export interface Pokemon {
     id: number,
     name: string,
@@ -17,15 +26,7 @@ export interface Pokemon {
     height?: number,
     weight?: number,
     types?: PokemonTypeSlot[],
-    stats?: Array<{
-        base_stat: number;
-        effort: number;
-        stat: {
-            name: string;
-            url: string;
-        };
-    }>,
-    pokemon?: Pokemon
+    stats?: Array<Stat>,
 }
 
 export interface PokedexEntry {
