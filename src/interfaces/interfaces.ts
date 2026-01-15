@@ -1,5 +1,3 @@
-import {Stat} from "@chakra-ui/react";
-
 export interface PokemonTypeSlot {
     slot: number;
     type: {
