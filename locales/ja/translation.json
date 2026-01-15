@@ -39,5 +39,14 @@
   },
   "error": {
     "no_pokedex_entry": "せんたくしたげんごのずかんエントリがありません。"
+  },
+  "stats": {
+    "hp": "HP",
+    "attack": "こうげき",
+    "defense": "ぼうぎょ",
+    "special-attack": "とくこう",
+    "special-defense": "とくぼう",
+    "speed": "すばやさ",
+    "total": "合計"
   }
 }

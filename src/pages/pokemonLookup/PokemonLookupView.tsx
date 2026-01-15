@@ -34,7 +34,7 @@ const PokemonLookupView = () => {
     const lngs = {
         en: {nativeName: "English"},
         de: {nativeName: "Deutsch"},
-        fr: {nativeName: "français"},
+        fr: {nativeName: "Français"},
         ja: {nativeName: "にほんご"}
     }
 

@@ -1,7 +1,10 @@
 import type {Stat} from "@/interfaces/interfaces.ts";
 import {Progress} from "@chakra-ui/react";
+import {useTranslation} from "react-i18next";
 
 const PokemonStats = ({stats}: {stats: Array<Stat> | undefined}) => {
+
+    const {t} = useTranslation();
 
     const getColorForBar = (statValue: number) => {
         const ranges = ['red', 'yellow', 'green'];
@@ -19,8 +22,8 @@ const PokemonStats = ({stats}: {stats: Array<Stat> | undefined}) => {
             {
                 stats?.map(stat => {
                     return(
-                        <div>
-                            <p>{stat.stat.name}</p>
+                        <div style={{marginBottom: 6}}>
+                            <p style={{marginBottom: 2}}>{t(`stats.${stat.stat.name}`)}: {stat.base_stat}</p>
                             <Progress.Root value={stat.base_stat} max={160} colorPalette={getColorForBar(stat.base_stat)} >
                                 <Progress.Track>
                                     <Progress.Range/>
@@ -30,8 +33,8 @@ const PokemonStats = ({stats}: {stats: Array<Stat> | undefined}) => {
                     )
                 })
             }
-            <div>
-                <p>Total: {calculateStatTotal()}</p>
+            <div style={{marginTop: 12}}>
+                <p>{t("stats.total")}: {calculateStatTotal()}</p>
             </div>
         </>
     )

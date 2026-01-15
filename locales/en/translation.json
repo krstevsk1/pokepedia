@@ -39,5 +39,14 @@
   },
   "error": {
     "no_pokedex_entry": "There is no Pokédex entry for your selected language."
+  },
+  "stats": {
+    "hp": "HP",
+    "attack": "Attack",
+    "defense": "Defense",
+    "special-attack": "Sp. Attack",
+    "special-defense": "Sp. Defense",
+    "speed": "Speed",
+    "total": "Total"
   }
 }
