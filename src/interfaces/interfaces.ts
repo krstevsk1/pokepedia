@@ -15,6 +15,19 @@ export interface Stat {
     stats?: Array<Stat> | undefined
 }
 
+export interface Move {
+    move: {
+        name: string;
+        url: string;
+    },
+    version_group_details: Array<{
+        level_learned_at: number;
+        move_learn_method: {
+            name: string;
+        }
+    }>
+}
+
 export interface Pokemon {
     id: number,
     name: string,
@@ -27,6 +40,7 @@ export interface Pokemon {
     weight?: number,
     types?: PokemonTypeSlot[],
     stats?: Array<Stat>,
+    moves: Array<Move>
 }
 
 export interface PokedexEntry {

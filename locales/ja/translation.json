@@ -48,5 +48,10 @@
     "special-defense": "とくぼう",
     "speed": "すばやさ",
     "total": "合計"
+  },
+  "moves": {
+    "name": "名前",
+    "lvl": "Lv.",
+    "learned_at": "習得レベル"
   }
 }

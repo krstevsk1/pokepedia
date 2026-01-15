@@ -48,5 +48,10 @@
     "special-defense": "Sp. Verteidigung",
     "speed": "Initiative",
     "total": "Gesamt"
+  },
+  "moves": {
+    "name": "Name",
+    "lvl": "Lvl.",
+    "learned_at": "Erlernt bei"
   }
 }
