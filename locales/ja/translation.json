@@ -21,7 +21,8 @@
       "dark": "あく",
       "steel": "はがね",
       "fairy": "フェアリー"
-    }
+    },
+    "evolves_from": "から進化:"
   },
   "input": {
     "search_pokemon": "なまえまたはずかんばんごう。"

@@ -62,6 +62,10 @@ export interface PokedexEntry {
             name: string;
             url: string;
         };
-    }>
+    }>,
+    evolves_from_species: {
+        name: string;
+        url: string;
+    }
 }
 

@@ -21,7 +21,8 @@
       "dark": "Ténèbres",
       "steel": "Acier",
       "fairy": "Fée"
-    }
+    },
+    "evolves_from": "Évolue depuis:"
   },
   "input": {
     "search_pokemon": "Nom ou numéro du Pokédex."

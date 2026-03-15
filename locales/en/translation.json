@@ -21,7 +21,8 @@
       "dark": "Dark",
       "steel": "Steel",
       "fairy": "Fairy"
-    }
+    },
+    "evolves_from": "Evolves from:"
   },
   "input": {
     "search_pokemon": "Name or pokedex number."
