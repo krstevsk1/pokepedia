@@ -3,11 +3,14 @@ import {useEffect, useState} from "react";
 import type {Pokemon} from "@/interfaces/interfaces.ts";
 import {CardBody, CardHeader, CardRoot, Image} from "@chakra-ui/react";
 import {useTranslation} from "react-i18next";
+import {getEvolutionChain} from "@/pages/pokemonLookup/services/evolutionService.ts";
 
-const EvolutionDisplay = ({prevEvolutionInfo}: {
-    prevEvolutionInfo?: {name: string, url: string}
+const EvolutionDisplay = ({prevEvolutionInfo, evoChain}: {
+    prevEvolutionInfo?: {name: string, url: string},
+    evoChain: string
 }) => {
-    const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined);
+    const [prevEvo, setPrevEvo] = useState<Pokemon | undefined>(undefined);
+    const [nextEvo, setNextEvo] = useState<Pokemon | undefined>(undefined);
 
     const {t} = useTranslation();
 
@@ -15,25 +18,59 @@ const EvolutionDisplay = ({prevEvolutionInfo}: {
         const fetchPokemon = async () => {
             if (prevEvolutionInfo) {
                 const data = await getPokemonByNameOrNumber(prevEvolutionInfo.name);
-                setPokemon(data);
+                setPrevEvo(data);
             } else {
-                setPokemon(undefined);
+                setPrevEvo(undefined);
             }
         };
+        const fetchEvoChain = async () => {
+
+            const data = await getEvolutionChain(evoChain);
+            if (!prevEvolutionInfo) {
+                const pokemon = data.chain.evolves_to[0]?.species.name
+                    ? await getPokemonByNameOrNumber(data.chain.evolves_to[0]?.species.name)
+                    : undefined;
+                setNextEvo(pokemon);
+            } else if (data.chain.species.name === prevEvolutionInfo.name && data.chain.evolves_to[0].evolves_to[0] == undefined) {
+                setNextEvo(undefined);
+            } else if (data.chain.species.name === prevEvolutionInfo.name && data.chain.evolves_to[0].evolves_to) {
+                const pokemon = await getPokemonByNameOrNumber(data.chain.evolves_to[0].evolves_to[0].species.name);
+                setNextEvo(pokemon);
+            } else {
+                setNextEvo(undefined);
+            }
+        }
         fetchPokemon();
-    }, [prevEvolutionInfo]);
+        fetchEvoChain();
+    }, [evoChain, prevEvolutionInfo]);
+
+
 
 
     return (
         <div style={{ display: "flex", justifyContent: "center" }}>
-            {pokemon && <CardRoot width="120px">
+            {prevEvo && <CardRoot width="140px">
                 <CardHeader>
-                    {t("pokemon.evolves_from")}
+                    <div>
+                        {t("pokemon.evolves_from")}
+                    </div>
                 </CardHeader>
                 <CardBody>
-                    <Image height="120px" src={pokemon.sprites.front_default?.valueOf()}/>
+                    <Image height="120px" src={prevEvo.sprites.front_default?.valueOf()}/>
                 </CardBody>
             </CardRoot>}
+            {nextEvo && <CardRoot width="140px">
+                <CardHeader>
+                    <div>
+                        {t("pokemon.evolves_to")}
+                    </div>
+                </CardHeader>
+                <CardBody>
+                    <Image height="120px" src={nextEvo.sprites.front_default?.valueOf()}/>
+                </CardBody>
+            </CardRoot>}
+            {prevEvo == undefined && nextEvo == undefined && t("pokemon.no_evolutions")
+            }
         </div>
     );
 }

@@ -22,7 +22,9 @@
       "steel": "はがね",
       "fairy": "フェアリー"
     },
-    "evolves_from": "から進化:"
+    "evolves_from": "から進化:",
+    "evolves_to": "に進化:",
+    "no_evolutions": "このポケモンは進化しません。"
   },
   "input": {
     "search_pokemon": "なまえまたはずかんばんごう。"

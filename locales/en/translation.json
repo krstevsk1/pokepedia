@@ -22,7 +22,9 @@
       "steel": "Steel",
       "fairy": "Fairy"
     },
-    "evolves_from": "Evolves from:"
+    "evolves_from": "Evolves from:",
+    "evolves_to": "Evolves into:",
+    "no_evolutions": "This pokémon doesn't evolve."
   },
   "input": {
     "search_pokemon": "Name or pokedex number."

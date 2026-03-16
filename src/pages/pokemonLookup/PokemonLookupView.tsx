@@ -125,7 +125,10 @@ const PokemonLookupView = () => {
                                     </Dropdown>
                                     <Dropdown title={t("dropdown.evolution")}>
                                         {pokedexEntry &&
-                                            <EvolutionDisplay prevEvolutionInfo={pokedexEntry.evolves_from_species}/>
+                                            <EvolutionDisplay
+                                                prevEvolutionInfo={pokedexEntry.evolves_from_species}
+                                                evoChain={pokedexEntry.evolution_chain.url}
+                                            />
                                         }
                                     </Dropdown>
                                 </Stack>

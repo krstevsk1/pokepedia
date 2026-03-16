@@ -30,7 +30,7 @@ const Dropdown = ({title, children, defaultOpen}: CardDropdownProps) => {
     }
 
     return (
-        <CardRoot>
+        <CardRoot width="320px">
             <DropdownHeader onClick={() => handleOpen()}>
                 <Heading size="md">{title}</Heading>
                 <FaChevronDown />
