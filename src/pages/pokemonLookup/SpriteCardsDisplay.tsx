@@ -1,7 +1,8 @@
 import type {Pokemon} from "@/interfaces/interfaces.ts";
-import {FcNext, FcPrevious} from "react-icons/fc";
-import {Button, CardBody, CardHeader, CardRoot, Heading, Image, useBreakpointValue} from "@chakra-ui/react";
+import {Button, CardBody, CardHeader, CardRoot, Heading, Icon, Image, useBreakpointValue} from "@chakra-ui/react";
 import {useTranslation} from "react-i18next";
+import {MdChevronLeft, MdChevronRight} from "react-icons/md";
+import {useColorMode} from "@/components/ui/color-mode.tsx";
 
 const SpriteCardsDisplay = (
     { pokemon, searchPokemon }: {
@@ -10,7 +11,9 @@ const SpriteCardsDisplay = (
     }) => {
 
     const { t } = useTranslation();
+    const { colorMode } = useColorMode();
     const isMobile = useBreakpointValue({ base: true, sm: false });
+    const isDark = colorMode === "dark";
 
     const handlePokemonChange = (order: string) => {
 
@@ -32,7 +35,7 @@ const SpriteCardsDisplay = (
                 px={isMobile ? "1" : "4"}
                 variant="ghost"
             >
-                <FcPrevious/>
+                <Icon as={MdChevronLeft} css={{ color: isDark ? "#ffde00 !important" : "#ee1515 !important" }} boxSize={12} />
             </Button>)}
             <CardRoot width="240px">
                 {!isMobile && <CardHeader>
@@ -57,7 +60,7 @@ const SpriteCardsDisplay = (
                 px={isMobile ? "1" : "4"}
                 variant="ghost"
             >
-                <FcNext/>
+                <Icon as={MdChevronRight} css={{ color: isDark ? "#ffde00 !important" : "#ee1515 !important" }} boxSize={12} />
             </Button>)}
         </>
     )

@@ -26,6 +26,8 @@ import {useTranslation} from "react-i18next";
 import PokemonStats from "@/pages/pokemonLookup/PokemonStats.tsx";
 import {MovesTable} from "@/pages/pokemonLookup/MovesTable.tsx";
 import EvolutionDisplay from "@/pages/pokemonLookup/EvolutionDisplay.tsx";
+import ColorModeToggle from "@/components/ColorModeToggle.tsx";
+import {useColorMode} from "@/components/ui/color-mode.tsx";
 
 const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
@@ -34,8 +36,11 @@ const PokemonLookupView = () => {
     const [error, setError] = useState<string | undefined>(undefined);
 
     const { t, i18n } = useTranslation();
+    const { colorMode } = useColorMode();
+
     const language = i18n.language;
     const isMobile = useBreakpointValue({ base: true, sm: false });
+    const isDark = colorMode === "dark";
 
     const lngs = {
         en: {nativeName: "English"},
@@ -91,7 +96,8 @@ const PokemonLookupView = () => {
 
     return (
         <>
-            <Flex gap={isMobile ? 1 : 4} justify="center">
+            <ColorModeToggle/>
+            <Flex gap={isMobile ? 1 : 4} justify="center" mt={4}>
                 {Object.entries(lngs).map(([lng, details]) => (
                     <Button
                         type="submit"
@@ -118,8 +124,8 @@ const PokemonLookupView = () => {
                         onKeyDown={(e) => e.key === "Enter" && searchPokemon()}
                     />
                     <Flex gap={2} width={isMobile ? "50%" : "auto"} alignSelf={isMobile ? "center" : "auto"}>
-                        <Button onClick={() => searchPokemon()} colorPalette="green" flex={4}>{t("button.search")}</Button>
-                        <Button onClick={searchRandomPokemon} colorPalette="blue" flex={1}>?</Button>
+                        <Button onClick={() => searchPokemon()} css={{ background: isDark ? "#ffde00 !important" : "#ee1515 !important" }} flex={4}>{t("button.search")}</Button>
+                        <Button onClick={searchRandomPokemon} colorPalette={isDark ? "white" : "black"} flex={1}>?</Button>
                     </Flex>
                 </Flex>
             </Container>
