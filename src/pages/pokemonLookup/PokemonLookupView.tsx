@@ -9,7 +9,7 @@ import {
     GridItem,
     Heading,
     Input,
-    Stack
+    Stack, useBreakpointValue
 } from "@chakra-ui/react";
 import {useState} from "react";
 import {
@@ -32,6 +32,7 @@ const PokemonLookupView = () => {
 
     const { t, i18n } = useTranslation();
     const language = i18n.language;
+    const isMobile = useBreakpointValue({ base: true, sm: false });
 
     const lngs = {
         en: {nativeName: "English"},
@@ -75,7 +76,7 @@ const PokemonLookupView = () => {
 
     return (
         <>
-            <Flex gap={4} justify="center">
+            <Flex gap={isMobile ? 1 : 4} justify="center">
                 {Object.entries(lngs).map(([lng, details]) => (
                     <Button
                         type="submit"
@@ -89,33 +90,33 @@ const PokemonLookupView = () => {
                 ))}
             </Flex>
             <Container maxW="md" mt="8">
-                <Flex gap={2}>
+                <Flex gap={2} direction={isMobile ? "column" : "row"}>
                     <Input
                         placeholder={t("input.search_pokemon")}
                         onBlur={(e) => changeNameOrNumber(e.target.value)}
                     />
-                    <Button onClick={() => searchPokemon()} colorPalette="green">{t("button.search")}</Button>
-                    <Button onClick={searchRandomPokemon} colorPalette="blue">?</Button>
+                    <Flex gap={2} width={isMobile ? "50%" : "auto"} alignSelf={isMobile ? "center" : "auto"}>
+                        <Button onClick={() => searchPokemon()} colorPalette="green" flex={4}>{t("button.search")}</Button>
+                        <Button onClick={searchRandomPokemon} colorPalette="blue" flex={1}>?</Button>
+                    </Flex>
                 </Flex>
             </Container>
             {pokemon && (
                 <Flex direction="column" align="center" gap={4} mt={4}>
                     <Heading size="4xl" css={{marginTop: "8"}}>{pokemon.name.toUpperCase()}</Heading>
-                    <div>
-                        <Flex gap={4}>
+                    <div style={{width: "min(600px, 90vw)", marginTop: "24px", marginLeft: "auto", marginRight: "auto"}}>
+                        <Flex gap={4} justify="center">
                             <SpriteCardsDisplay pokemon={pokemon} searchPokemon={searchPokemon} />
                         </Flex>
-                    </div>
-                    <div style={{width: "55%", marginTop: "24px"}}>
-                        <Grid width="600px" templateColumns="repeat(2, 1fr)">
-                            <GridItem>
+                        <Grid width="100%" templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"} mt={isMobile ? 12 : 6} gap={4}>
+                            <GridItem minW="0">
                                 <TypeDisplay types={pokemon.types} />
-                                <BlockquoteRoot css={{marginTop: "12"}}>
+                                <BlockquoteRoot css={{marginTop: "6"}}>
                                     <BlockquoteContent>{currentPokedexEntry}</BlockquoteContent>
                                     <BlockquoteCaption><cite>-{t("common.pokedex")}</cite></BlockquoteCaption>
                                 </BlockquoteRoot>
                             </GridItem>
-                            <GridItem>
+                            <GridItem minW="0">
                                 <Stack gap={4}>
                                     <Dropdown title={t("dropdown.stats")}>
                                         <PokemonStats stats={pokemon.stats}/>
