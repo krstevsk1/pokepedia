@@ -23,6 +23,7 @@ import Dropdown from "@/components/Dropdown.tsx";
 import {useTranslation} from "react-i18next";
 import PokemonStats from "@/pages/pokemonLookup/PokemonStats.tsx";
 import {MovesTable} from "@/pages/pokemonLookup/MovesTable.tsx";
+import EvolutionDisplay from "@/pages/pokemonLookup/EvolutionDisplay.tsx";
 
 const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
@@ -122,7 +123,14 @@ const PokemonLookupView = () => {
                                     <Dropdown title={t("dropdown.moves")}>
                                         <MovesTable moves={pokemon.moves}/>
                                     </Dropdown>
-                                    <Dropdown title={t("dropdown.evolution")}/>
+                                    <Dropdown title={t("dropdown.evolution")}>
+                                        {pokedexEntry &&
+                                            <EvolutionDisplay
+                                                prevEvolutionInfo={pokedexEntry.evolves_from_species}
+                                                evoChain={pokedexEntry.evolution_chain.url}
+                                            />
+                                        }
+                                    </Dropdown>
                                 </Stack>
                             </GridItem>
                         </Grid>

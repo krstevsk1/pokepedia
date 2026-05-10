@@ -62,6 +62,32 @@ export interface PokedexEntry {
             name: string;
             url: string;
         };
-    }>
+    }>,
+    evolves_from_species: {
+        name: string;
+        url: string;
+    },
+    evolution_chain: {
+        url: string;
+    }
+}
+
+export interface EvolutionChain {
+    chain: ChainLink;
+}
+
+interface ChainLink {
+    species: {
+        name: string;
+        url: string;
+    };
+    evolution_details: Array<{
+        min_level: number | null;
+        trigger: {
+            name: string;
+            url: string;
+        };
+    }>;
+    evolves_to: ChainLink[];
 }
 

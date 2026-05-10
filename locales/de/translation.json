@@ -21,7 +21,10 @@
       "dark": "Unlicht",
       "steel": "Stahl",
       "fairy": "Fee"
-    }
+    },
+    "evolves_from": "Entwickelt sich aus:",
+    "evolves_to": "Entwickelt sich zu:",
+    "no_evolutions": "Dieses Pokémon entwickelt sich nicht weiter."
   },
   "input": {
     "search_pokemon": "Name oder Pokédex-Nummer."
