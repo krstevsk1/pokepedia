@@ -42,7 +42,8 @@
     "evolution": "Évolution"
   },
   "error": {
-    "no_pokedex_entry": "Il n'y a pas d'entrée Pokédex pour la langue sélectionnée."
+    "no_pokedex_entry": "Il n'y a pas d'entrée Pokédex pour la langue sélectionnée.",
+    "pokemon_not_found": "Pokémon introuvable."
   },
   "stats": {
     "hp": "PV",

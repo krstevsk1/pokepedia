@@ -42,7 +42,8 @@
     "evolution": "Entwicklung"
   },
   "error": {
-    "no_pokedex_entry": "Es gibt keinen Pokédex-Eintrag für die ausgewählte Sprache."
+    "no_pokedex_entry": "Es gibt keinen Pokédex-Eintrag für die ausgewählte Sprache.",
+    "pokemon_not_found": "Pokémon nicht gefunden."
   },
   "stats": {
     "hp": "KP",
