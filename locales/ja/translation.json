@@ -42,7 +42,8 @@
     "evolution": "しんか"
   },
   "error": {
-    "no_pokedex_entry": "せんたくしたげんごのずかんエントリがありません。"
+    "no_pokedex_entry": "せんたくしたげんごのずかんエントリがありません。",
+    "pokemon_not_found": "みつかりませんでした。"
   },
   "stats": {
     "hp": "HP",

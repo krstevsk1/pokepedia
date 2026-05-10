@@ -1,8 +1,10 @@
 import {
+    Alert,
     BlockquoteCaption,
     BlockquoteContent,
     BlockquoteRoot,
     Button,
+    CloseButton,
     Container,
     Flex,
     Grid,
@@ -29,6 +31,7 @@ const PokemonLookupView = () => {
     const [nameOrNumber, setNameOrNumber] = useState<string>("")
     const [pokemon, setPokemon] = useState<Pokemon | undefined>(undefined)
     const [pokedexEntry, setPokedexEntry] = useState<PokedexEntry | undefined>(undefined)
+    const [error, setError] = useState<string | undefined>(undefined);
 
     const { t, i18n } = useTranslation();
     const language = i18n.language;
@@ -47,14 +50,26 @@ const PokemonLookupView = () => {
 
     const searchPokemon = async (searchValue?: string) => {
         const valueToSearch = searchValue || nameOrNumber;
+        setError(undefined);
 
-        const [pokemonData, pokedexData] = await Promise.all([
-            getPokemonByNameOrNumber(valueToSearch),
-            getPokedexByNameOrNumber(valueToSearch)
-        ]);
+        if (!valueToSearch) {
+            setError("error.pokemon_not_found");
+            return;
+        }
 
-        setPokemon(pokemonData);
-        setPokedexEntry(pokedexData);
+        try {
+            const [pokemonData, pokedexData] = await Promise.all([
+                getPokemonByNameOrNumber(valueToSearch),
+                getPokedexByNameOrNumber(valueToSearch)
+            ]);
+
+            setPokemon(pokemonData);
+            setPokedexEntry(pokedexData);
+        } catch {
+            setError(t("error.pokemon_not_found"));
+            setPokemon(undefined);
+            setPokedexEntry(undefined);
+        }
     }
 
     const searchRandomPokemon = async () => {
@@ -90,10 +105,17 @@ const PokemonLookupView = () => {
                 ))}
             </Flex>
             <Container maxW="md" mt="8">
+                {error && <Alert.Root status="error" mb="2" alignItems="center">
+                    <Alert.Indicator />
+                    <Alert.Title>{t("error.pokemon_not_found")}</Alert.Title>
+                    <CloseButton size="2xs" pos="relative" top="-2" insetEnd="-2" marginLeft="auto" alignSelf="center" onClick={() => setError(undefined)}/>
+                </Alert.Root>}
                 <Flex gap={2} direction={isMobile ? "column" : "row"}>
                     <Input
                         placeholder={t("input.search_pokemon")}
                         onBlur={(e) => changeNameOrNumber(e.target.value)}
+                        onChange={(e) => changeNameOrNumber(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && searchPokemon()}
                     />
                     <Flex gap={2} width={isMobile ? "50%" : "auto"} alignSelf={isMobile ? "center" : "auto"}>
                         <Button onClick={() => searchPokemon()} colorPalette="green" flex={4}>{t("button.search")}</Button>

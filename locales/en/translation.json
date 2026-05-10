@@ -42,7 +42,8 @@
     "evolution": "Evolution"
   },
   "error": {
-    "no_pokedex_entry": "There is no Pokédex entry for your selected language."
+    "no_pokedex_entry": "There is no Pokédex entry for your selected language.",
+    "pokemon_not_found": "Pokémon not found."
   },
   "stats": {
     "hp": "HP",
