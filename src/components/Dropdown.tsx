@@ -33,7 +33,12 @@ const Dropdown = ({title, children, defaultOpen}: CardDropdownProps) => {
         <CardRoot width="320px">
             <DropdownHeader onClick={() => handleOpen()}>
                 <Heading size="md">{title}</Heading>
-                <FaChevronDown />
+                <FaChevronDown
+                    style={{
+                        transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "transform 0.3s ease"
+                    }}
+                />
             </DropdownHeader>
 
             { isOpen && <CardBody>
