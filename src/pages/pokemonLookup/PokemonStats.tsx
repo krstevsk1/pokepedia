@@ -20,9 +20,9 @@ const PokemonStats = ({stats}: {stats: Array<Stat> | undefined}) => {
     return (
         <>
             {
-                stats?.map(stat => {
+                stats?.map((stat, index) => {
                     return(
-                        <div style={{marginBottom: 6}}>
+                        <div key={index} style={{marginBottom: 6}}>
                             <p style={{marginBottom: 2}}>{t(`stats.${stat.stat.name}`)}: {stat.base_stat}</p>
                             <Progress.Root value={stat.base_stat} max={160} colorPalette={getColorForBar(stat.base_stat)} >
                                 <Progress.Track>
