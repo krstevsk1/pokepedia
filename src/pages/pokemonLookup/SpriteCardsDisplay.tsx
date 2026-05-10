@@ -1,6 +1,6 @@
 import type {Pokemon} from "@/interfaces/interfaces.ts";
 import {FcNext, FcPrevious} from "react-icons/fc";
-import {Button, CardBody, CardHeader, CardRoot, Heading, Image} from "@chakra-ui/react";
+import {Button, CardBody, CardHeader, CardRoot, Heading, Image, useBreakpointValue} from "@chakra-ui/react";
 import {useTranslation} from "react-i18next";
 
 const SpriteCardsDisplay = (
@@ -10,6 +10,7 @@ const SpriteCardsDisplay = (
     }) => {
 
     const { t } = useTranslation();
+    const isMobile = useBreakpointValue({ base: true, sm: false });
 
     const handlePokemonChange = (order: string) => {
 
@@ -27,21 +28,24 @@ const SpriteCardsDisplay = (
             { pokemon.id > 1 && (<Button
                 onClick={() => handlePokemonChange("previous")}
                 style={{marginTop: "25%"}}
-                variant="ghost">
+                minW={isMobile ? "1" : "auto"}
+                px={isMobile ? "1" : "4"}
+                variant="ghost"
+            >
                 <FcPrevious/>
             </Button>)}
             <CardRoot width="240px">
-                <CardHeader>
+                {!isMobile && <CardHeader>
                     <Heading>{t("pokemon.front_sprite")}</Heading>
-                </CardHeader>
+                </CardHeader>}
                 <CardBody>
                     <Image height="200px" src={pokemon.sprites.front_default?.valueOf()}/>
                 </CardBody>
             </CardRoot>
-            {pokemon.sprites.back_default && (<CardRoot width="240px">
-                <CardHeader>
+            {pokemon.sprites.back_default && !isMobile && (<CardRoot width="240px">
+                {!isMobile && <CardHeader>
                     <Heading>{t("pokemon.back_sprite")}</Heading>
-                </CardHeader>
+                </CardHeader>}
                 <CardBody>
                     <Image height="200px" src={pokemon.sprites.back_default?.valueOf()}/>
                 </CardBody>
@@ -49,7 +53,10 @@ const SpriteCardsDisplay = (
             { pokemon.id < 1025 && (<Button
                 onClick={() => handlePokemonChange("next")}
                 style={{marginTop: "25%"}}
-                variant="ghost">
+                minW={isMobile ? "1" : "auto"}
+                px={isMobile ? "1" : "4"}
+                variant="ghost"
+            >
                 <FcNext/>
             </Button>)}
         </>

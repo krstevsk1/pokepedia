@@ -1,15 +1,16 @@
-import {Image} from "@chakra-ui/react";
+import {Image, useBreakpointValue} from "@chakra-ui/react";
 import type {PokemonTypeSlot} from "@/interfaces/interfaces.ts";
 import {useTranslation} from "react-i18next";
 
 const TypeDisplay = ({ types }: { types?: PokemonTypeSlot[] }) => {
 
     const { t } = useTranslation();
+    const isMobile = useBreakpointValue({ base: true, sm: false });
 
     const getPokemonTypeLocations = () => {
 
         return (
-            <div style={{display: "flex", alignContent: "flex-start"}}>
+            <div style={{display: "flex", justifyContent: isMobile ? "center" : "flex-start"}}>
                 {types?.map(type => (
                     <div style={{display: "flex", alignItems: "center", gap: "8px", width: "160px"}}>
                     <Image width="48px"
